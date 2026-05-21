@@ -14,8 +14,8 @@ export async function GET() {
     where: { swiperId: session.userId },
     select: { swipedId: true },
   });
-  const swipedIds = swiped.map((s) => s.swipedId);
-  swipedIds.push(session.userId); // exclude self
+  const swipedIds = swiped.map((s: { swipedId: string }) => s.swipedId);
+  swipedIds.push(session.userId);
 
   const genderFilter =
     me.prefGenderInterest === "everyone"
